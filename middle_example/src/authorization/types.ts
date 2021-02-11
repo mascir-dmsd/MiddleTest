@@ -24,7 +24,7 @@ export const UserProfileSchema = {
     },
     password: {
       type: 'string',
-      minLength: 8,
+      minLength: 6,
     },
     name: {type: 'string'},
     role: {type: 'string'},
@@ -86,11 +86,11 @@ export const NewCredentialsSchema = {
     },
     password: {
       type: 'string',
-      minLength: 8,
+      minLength: 6,
     },
     newPassword: {
       type: 'string',
-      minLength: 8,
+      minLength: 6,
     },
   },
 };

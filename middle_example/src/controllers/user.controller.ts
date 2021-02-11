@@ -59,6 +59,7 @@ export class UserController {
     public getCurrentUser: Getter<MyUserProfile>,
   ) {}
   
+  //post all users by admin & post client+collab by chef
   @authenticate({strategy: 'jwt', options: {option1: Role.Admin}})
   @post('/users', {
     responses: {
@@ -92,7 +93,7 @@ export class UserController {
       return newUser;
     }
   }
-
+//for everyone
   @post('/users/login', {
     responses: {
       '200': {
@@ -119,7 +120,7 @@ export class UserController {
               },
               password: {
                 type: 'string',
-                minLength: 8,
+                minLength: 6,
               },
             },
           },
@@ -158,6 +159,7 @@ export class UserController {
     return this.userRepository.count(where);
   }
 
+    //get all users by admin & get client+collab by chef
   @authenticate({strategy: 'jwt', options: {option1: Role.Admin}})
   @get('/users')
   @response(200, {
@@ -175,6 +177,7 @@ export class UserController {
     return this.userRepository.find(filter);
   }
 
+    //update all users by admin & update client+collab by chef
   @authenticate({strategy: 'jwt', options: {option1: Role.Admin}})
   @patch('/users')
   @response(200, {
@@ -241,6 +244,7 @@ export class UserController {
     await this.userRepository.replaceById(id, user);
   }
 
+    //delete all users by admin & delete client+collab by chef
   @authenticate({strategy: 'jwt', options: {option1: Role.Admin}})
   @del('/users/{id}')
   @response(204, {
